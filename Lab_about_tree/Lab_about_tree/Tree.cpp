@@ -1,16 +1,16 @@
 #include"Tree.hpp"
 
-Tree::Tree( int data )
+Tree::Tree()
 {
 
-	this->leaf.data = data;
+	this->root = NULL;
 
 }
 
 Tree::Tree( const Tree& copied_tree )
 {
 
-	
+	this->root = clone( copied_tree.root );
 
 }
 
