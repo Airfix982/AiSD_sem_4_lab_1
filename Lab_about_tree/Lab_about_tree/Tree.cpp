@@ -25,6 +25,6 @@ void Tree::print() const
 Tree& Tree::operator = ( const Tree& copied_tree )
 {
 
-
+	this->root = clone( copied_tree.root );
 
 }
