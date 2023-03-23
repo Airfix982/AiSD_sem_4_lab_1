@@ -25,7 +25,7 @@ class Tree
 
 		Tree( const Tree& copied_tree );//+
 
-		Tree& operator = ( const Tree& copied_tree );
+		Tree& operator = ( const Tree& copied_tree );//+
 
 		Node* clone( Node* node )
 		{
@@ -59,7 +59,32 @@ class Tree
 
 		}
 
-		bool insert( int key );
+		bool insert( int key );//+
+
+		Node* add( Node* root, const int key )
+		{
+
+			if( root == NULL )
+			{
+			
+				return new Node(key);
+			
+			}
+			if ( key < root->data )
+			{
+
+				root->left = add( root->left, key );
+
+			}
+			else
+			{
+
+				root->right = add( root->right, key );
+
+			}
+			return root;
+
+		};
 
 		bool contains( int key ) const;
 
