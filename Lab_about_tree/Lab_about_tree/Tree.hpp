@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
+using namespace std;
 #pragma once
 
 class Tree
@@ -19,9 +21,9 @@ class Tree
 
 	public:
 
-		Tree();
+		Tree();//+
 
-		Tree( const Tree& copied_tree );
+		Tree( const Tree& copied_tree );//+
 
 		Tree& operator = ( const Tree& copied_tree );
 
@@ -41,7 +43,21 @@ class Tree
 		
 		};
 
-		void print() const;
+		void print() const;//+
+
+		void print_tree(const Node* node)
+		{
+
+			if (node)
+			{
+
+				cout << node->data << " ";
+
+			}
+			print_tree(node->left);
+			print_tree(node->right);
+
+		}
 
 		bool insert( int key );
 

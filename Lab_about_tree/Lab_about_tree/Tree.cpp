@@ -17,6 +17,14 @@ Tree::Tree( const Tree& copied_tree )
 void Tree::print() const
 {
 
+	cout << endl;
+	print_tree( this->root );
+
+}
+
+Tree& Tree::operator = ( const Tree& copied_tree )
+{
+
 
 
 }
