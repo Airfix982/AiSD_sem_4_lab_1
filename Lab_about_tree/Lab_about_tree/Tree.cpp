@@ -49,3 +49,10 @@ bool Tree::erase( int key )
 	this->root = delete_( this->root, key );
 
 }
+
+bool Tree::clear()
+{
+
+	clearing( this->root );
+
+}

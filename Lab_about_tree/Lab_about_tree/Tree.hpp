@@ -191,6 +191,16 @@ class Tree
 
 		bool clear();
 
+		bool clearing( Node* root )
+		{
+		
+			if ( root->left ) clearing( root->left );
+			if ( root->right ) clearing( root->right );
+			delete root;
+			root = NULL;
+		
+		};
+
 		~Tree();
 
 };
