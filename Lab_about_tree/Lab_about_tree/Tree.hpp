@@ -45,7 +45,7 @@ class Tree
 
 		void print() const;//+
 
-		void print_tree(const Node* node)
+		void print_tree( const Node* node ) const
 		{
 
 			if (node)
@@ -86,7 +86,27 @@ class Tree
 
 		};
 
-		bool contains( int key ) const;
+		bool contains( int key ) const;//+
+
+		bool presence( const Node* root, int key ) const
+		{
+		
+			if( root->data == key ) return true;
+			else if( root->left )
+			{
+
+				if( presence( root->left, key ) ) return true;
+
+			}
+			else if ( root->right )
+			{
+
+				if ( presence( root->right, key ) ) return true;
+
+			}
+			else return false;
+		
+		};
 
 		bool erase( int key );
 
