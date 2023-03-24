@@ -56,3 +56,10 @@ bool Tree::clear()
 	clearing( this->root );
 
 }
+
+Tree::~Tree()
+{
+
+	this->clear();
+
+}

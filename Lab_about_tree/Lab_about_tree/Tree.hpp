@@ -189,7 +189,7 @@ class Tree
 		
 		}
 
-		bool clear();
+		bool clear();//+
 
 		bool clearing( Node* root )
 		{
@@ -201,6 +201,6 @@ class Tree
 		
 		};
 
-		~Tree();
+		~Tree();//+
 
 };
