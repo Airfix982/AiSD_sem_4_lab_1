@@ -108,7 +108,86 @@ class Tree
 		
 		};
 
-		bool erase( int key );
+		bool erase( int key );//+
+
+		Node* find_min( Node* node )
+		{
+		
+			while( node->left != NULL )
+			{
+			
+				node = node->left;
+			
+			}
+			return node;
+		
+		}
+
+		Node* delete_( Node* root, int key )
+		{
+		
+			if( root == NULL )
+			{
+				
+				cout << endl << "Tree doesn't consist any values";
+				return NULL; 
+			
+			}
+			else if( key < root->data )
+			{
+			
+				root->left = delete_( root->left, key );
+			
+			}
+			else if ( key > root->data )
+			{
+
+				root->right = delete_( root->right, key );
+
+			}
+			else
+			{
+
+				if ( !root->left && !root->right )
+				{
+
+					cout << endl << "element " << key << " has been deleted";
+					delete root;
+					root = NULL;
+
+				}
+				else if ( !root->left )
+				{
+
+					cout << endl << "element " << key << " has been deleted";
+					Node* tmp = root;
+					root = root->right;
+					delete tmp;
+
+				}
+				else if ( !root->right )
+				{
+
+					cout << endl << "element " << key << " has been deleted";
+					Node* tmp = root;
+					root = root->left;
+					delete tmp;
+
+				}
+				else
+				{
+
+					cout << endl << "element " << key << " has been deleted";
+					Node* tmp = find_min(root->right);
+					root->data = tmp->data;
+					root->right = delete_(root->right, tmp->data);
+
+				}
+
+			}
+			return root;
+		
+		}
 
 		bool clear();
 
