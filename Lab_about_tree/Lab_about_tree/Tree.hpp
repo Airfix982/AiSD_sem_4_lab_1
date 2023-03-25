@@ -97,24 +97,23 @@ class Tree
 		bool presence( const Node* root, int key ) const
 		{
 		
-			if (root)
+			if (root == NULL) return false;
+			else
 			{
 				if (root->data == key) return true;
-				else if (root->left)
+				else if (key < root->data)
 				{
 
-					if (presence(root->left, key)) return true;
+					return presence(root->left, key);
 
 				}
-				else if (root->right)
+				else
 				{
 
-					if (presence(root->right, key)) return true;
+					return presence(root->right, key);
 
 				}
-				else return false;
 			}
-			return false;
 		
 		};
 

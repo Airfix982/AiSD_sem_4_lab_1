@@ -98,7 +98,7 @@ void adding(Tree& oak)
 		if (double(int(value)) != value) choice = incorect_insert(2);
 		if (choice == 1) continue;
 		else if (choice == 2) return;
-		else if(!oak.contains(value)) oak.insert(value);
+		else if(!(oak.contains(value))) oak.insert(value);
 		return;
 	}
 }
@@ -189,8 +189,6 @@ void existing(Tree& oak)
 }
 
 
-
-
 int Tree_menu()
 {
 	Tree oak;
@@ -271,22 +269,12 @@ int Tree_menu()
 				}
 				break;
 
-
 			default:
 				system("cls");
 				break;
-
-
 			}
-
 		}
-
-
-
 	}
-
-
 	_getch();
 	return 1;
-
 }
