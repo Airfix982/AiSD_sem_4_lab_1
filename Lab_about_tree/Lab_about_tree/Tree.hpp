@@ -1,8 +1,9 @@
+#pragma once
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
 using namespace std;
-#pragma once
+
 
 class Tree
 {
@@ -27,7 +28,7 @@ class Tree
 
 		Tree& operator = ( const Tree& copied_tree );//+
 
-		Node* clone( Node* node )
+		Node* clone( const Node* node )
 		{
 		
 			if ( node == NULL )
@@ -198,6 +199,7 @@ class Tree
 			if ( root->right ) clearing( root->right );
 			delete root;
 			root = NULL;
+			return 1;
 		
 		};
 

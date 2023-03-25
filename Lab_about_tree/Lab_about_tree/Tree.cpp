@@ -26,6 +26,7 @@ Tree& Tree::operator = ( const Tree& copied_tree )
 {
 
 	this->root = clone( copied_tree.root );
+	return *this;
 
 }
  
@@ -33,6 +34,7 @@ bool Tree::insert( const int key )
 {
 
 	this->root = add( this->root, key );
+	return 1;
 
 }
 
@@ -40,6 +42,7 @@ bool Tree::contains( int key ) const
 {
 
 	presence( this->root, key ) ? cout << endl << "yes" : cout << endl << "no";
+	return 1;
 
 }
 
@@ -47,6 +50,7 @@ bool Tree::erase( int key )
 {
 
 	this->root = delete_( this->root, key );
+	return 1;
 
 }
 
@@ -54,6 +58,7 @@ bool Tree::clear()
 {
 
 	clearing( this->root );
+	return 1;
 
 }
 
