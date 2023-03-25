@@ -54,14 +54,14 @@ class Tree
 		void print_tree( const Node* node ) const
 		{
 
-			if (node)
+			if (node != NULL)
 			{
 
 				cout << node->data << " ";
+				print_tree(node->left);
+				print_tree(node->right);
 
 			}
-			print_tree(node->left);
-			print_tree(node->right);
 
 		}
 
