@@ -1,11 +1,11 @@
 #include"Tree.hpp"
 
-Tree::Tree()
-{
-
-	this->root = NULL;
-
-}
+//Tree::Tree()
+//{
+//
+//	this->root = NULL;
+//
+//}
 
 Tree::Tree( const Tree& copied_tree )
 {

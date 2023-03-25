@@ -22,7 +22,12 @@ class Tree
 
 	public:
 
-		Tree();//+
+		Node* get_root()
+		{
+			return root;
+		}
+
+		Tree() = default;//+
 
 		Tree( const Tree& copied_tree );//+
 
@@ -194,11 +199,12 @@ class Tree
 
 		bool clearing( Node* root )
 		{
-		
-			if ( root->left ) clearing( root->left );
-			if ( root->right ) clearing( root->right );
-			delete root;
-			root = NULL;
+			if (root) {
+				if (root->left) clearing(root->left);
+				if (root->right) clearing(root->right);
+				delete root;
+				root = NULL;
+			}
 			return 1;
 		
 		};

@@ -2,16 +2,19 @@
 #include<stdio.h>
 #include<iostream>
 #include<conio.h>
-#include<vector>
 #include<string>
-#include"Tree.hpp"
+#include<vector>
 #define ESC 27
 #define UP 72
 #define DOWN 80
 #define ENTER 13
 #define ACT_COL 11
 #define DEF_COL 15
-
+using namespace std;
+void Menu_1();
+int Tree_menu();
+//Menu_2();
+//Menu_3();
 HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 
 void ConsoleCursorVisible(bool show, short size)
@@ -25,7 +28,7 @@ void ConsoleCursorVisible(bool show, short size)
 
 void main_menu()
 {
-	string Menu_1[] = { "Создать новое дерево", "Провести тесты", "Выполнить задачу", "Закончить (ESC)" };
+	string main_menu[] = { "Создать новое дерево", "Провести тесты", "Выполнить задачу", "Закончить (ESC)" };
 	int active_menu = 0;
 	ConsoleCursorVisible(false, 100);
 
@@ -34,11 +37,11 @@ void main_menu()
 	while (true)
 	{
 
-		for (int i = 0; i < size(Menu_1); i++)
+		for (int i = 0; i < size(main_menu); i++)
 		{
 			if (i == active_menu) SetConsoleTextAttribute(hStdOut, ACT_COL);
 			else SetConsoleTextAttribute(hStdOut, DEF_COL);
-			cout << Menu_1[i] << endl;
+			cout << main_menu[i] << endl;
 		}
 
 
@@ -60,7 +63,7 @@ void main_menu()
 				system("cls");
 				break;
 			case DOWN:
-				if (active_menu < size(Menu_1) - 1) active_menu++;
+				if (active_menu < size(main_menu) - 1) active_menu++;
 				system("cls");
 				break;
 
@@ -69,6 +72,10 @@ void main_menu()
 				switch (active_menu)
 				{
 					case 0:
+						while (true)
+						{
+							if (Tree_menu() == -1) break;
+						}
 					case 1:
 					case 2:
 						/*system("cls");
