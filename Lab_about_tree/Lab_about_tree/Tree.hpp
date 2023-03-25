@@ -25,7 +25,7 @@ class Tree
 		Node* get_root()
 		{
 			return root;
-		}
+		};
 
 		Tree() = default;//+
 
@@ -97,20 +97,24 @@ class Tree
 		bool presence( const Node* root, int key ) const
 		{
 		
-			if( root->data == key ) return true;
-			else if( root->left )
+			if (root)
 			{
+				if (root->data == key) return true;
+				else if (root->left)
+				{
 
-				if( presence( root->left, key ) ) return true;
+					if (presence(root->left, key)) return true;
 
+				}
+				else if (root->right)
+				{
+
+					if (presence(root->right, key)) return true;
+
+				}
+				else return false;
 			}
-			else if ( root->right )
-			{
-
-				if ( presence( root->right, key ) ) return true;
-
-			}
-			else return false;
+			return false;
 		
 		};
 

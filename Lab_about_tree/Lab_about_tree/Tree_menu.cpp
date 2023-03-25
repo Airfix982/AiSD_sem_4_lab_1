@@ -45,6 +45,7 @@ int incorect_insert(const int mistake)
 		}
 
 		ch1 = _getch();
+		if (ch1 == -32) ch1 = _getch();
 		switch (ch1)
 		{
 		case ESC:
@@ -97,7 +98,7 @@ void adding(Tree& oak)
 		if (double(int(value)) != value) choice = incorect_insert(2);
 		if (choice == 1) continue;
 		else if (choice == 2) return;
-		else oak.insert(value);
+		else if(!oak.contains(value)) oak.insert(value);
 		return;
 	}
 }
@@ -125,6 +126,64 @@ void removing(Tree& oak)
 		if (choice == 1) continue;
 		else if (choice == 2) return;
 		else oak.erase(value);
+		return;
+	}
+}
+
+void existing(Tree& oak)
+{
+
+	double value;
+	while (1)
+	{
+		system("cls");
+		ConsoleCursorVisible(true, 100);
+		SetConsoleTextAttribute(hStdOut1_1, DEF_COL);
+		cout << "Введите значение: ";
+		int choice = 0;
+		while (!(cin >> value) || (cin.peek() != '\n'))
+		{
+			cin.clear();
+			while (cin.get() != '\n');
+			choice = incorect_insert(1);
+
+			break;
+		}
+		if (double(int(value)) != value) choice = incorect_insert(2);
+		if (choice == 1) continue;
+		else if (choice == 2) return;
+		else
+		{
+			ConsoleCursorVisible(true, 100);
+			while (1)
+			{
+				
+				system("cls");
+				if (oak.contains(value))
+				{
+					SetConsoleTextAttribute(hStdOut1_1, GREEN);
+					cout << "Такое число есть";
+					SetConsoleTextAttribute(hStdOut1_1, ACT_COL);
+					cout << endl << endl << "ну есть и есть";
+				}
+				else
+				{
+					SetConsoleTextAttribute(hStdOut1_1, RED);
+					cout << "Такого числа нет";
+					SetConsoleTextAttribute(hStdOut1_1, ACT_COL);
+					cout << endl << endl << "ну нет так нет";
+				}
+				char ch2;
+				ch2 = _getch();
+				switch (ch2)
+				{
+					case ENTER:
+						return;
+					default:
+						break;
+				}
+			}
+		}
 		return;
 	}
 }
@@ -201,9 +260,7 @@ int Tree_menu()
 						break;
 					case 2:
 						if (oak.get_root() == NULL) break;
-						system("cls");
-						cout << "nice chice";
-						_getch();
+						existing(oak);
 						break;
 					case 3:
 

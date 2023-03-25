@@ -40,8 +40,7 @@ bool Tree::insert( const int key )
 bool Tree::contains( int key ) const
 {
 
-	presence( this->root, key ) ? cout << endl << "yes" : cout << endl << "no";
-	return 1;
+	return presence( this->root, key );
 
 }
 
