@@ -32,7 +32,7 @@ Tree& Tree::operator = ( const Tree& copied_tree )
 bool Tree::insert( const int key )
 {
 
-	this->root = add( this->root, key );
+	if(!this->contains(key)) this->root = add( this->root, key );
 	return 1;
 
 }

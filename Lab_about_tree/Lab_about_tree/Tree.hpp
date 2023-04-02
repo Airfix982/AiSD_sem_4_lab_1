@@ -138,7 +138,6 @@ class Tree
 			if( root == NULL )
 			{
 				
-				cout << endl << "Tree doesn't consist any values";
 				return NULL; 
 			
 			}
@@ -160,7 +159,6 @@ class Tree
 				if ( !root->left && !root->right )
 				{
 
-					cout << endl << "element " << key << " has been deleted";
 					delete root;
 					root = NULL;
 

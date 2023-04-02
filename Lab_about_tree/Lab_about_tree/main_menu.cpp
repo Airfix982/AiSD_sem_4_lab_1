@@ -12,7 +12,9 @@
 #define DEF_COL 15
 using namespace std;
 void Menu_1();
+void Speed_test_menu();
 int Tree_menu();
+void Task_menu();
 //Menu_2();
 //Menu_3();
 HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -77,18 +79,9 @@ void main_menu()
 							if (Tree_menu() == -1) break;
 						}
 					case 1:
+						Speed_test_menu();
 					case 2:
-						/*system("cls");
-						SetConsoleTextAttribute(hStdOut, FOREGROUND_RED | FOREGROUND_GREEN |
-
-							FOREGROUND_INTENSITY);
-
-						cout << "Пользователь выбрал " << Menu_1[active_menu] << endl;
-						_getch();
-						system("cls");
-						break;*/
-						system("cls");
-						break;
+						Task_menu();
 					case 3:
 						SetConsoleTextAttribute(hStdOut, DEF_COL);
 						exit(0);

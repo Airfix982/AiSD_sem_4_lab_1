@@ -17,7 +17,7 @@
 #define PAS_ACT 3
 using namespace std;
 
-HANDLE hStdOut1_1 = GetStdHandle(STD_OUTPUT_HANDLE);
+HANDLE hStdOut1 = GetStdHandle(STD_OUTPUT_HANDLE);
 void ConsoleCursorVisible(bool show, short size);
 
 int incorect_insert(const int mistake)
@@ -30,7 +30,7 @@ int incorect_insert(const int mistake)
 	while (1)
 	{
 
-		SetConsoleTextAttribute(hStdOut1_1, RED);
+		SetConsoleTextAttribute(hStdOut1, RED);
 		system("cls");
 		if (mistake == 1) cout << endl << endl << "\tВы ввели текст" << endl << endl;
 		if (mistake == 2) cout << endl << endl << "\tВы ввели не целое число" << endl << endl;
@@ -38,8 +38,8 @@ int incorect_insert(const int mistake)
 
 		for (int i = 0; i < size(adding); i++)
 		{
-			if (i == active_adding) SetConsoleTextAttribute(hStdOut1_1, ACT_COL);
-			else SetConsoleTextAttribute(hStdOut1_1, DEF_COL);
+			if (i == active_adding) SetConsoleTextAttribute(hStdOut1, ACT_COL);
+			else SetConsoleTextAttribute(hStdOut1, DEF_COL);
 			cout << adding[i] << endl;
 
 		}
@@ -83,7 +83,7 @@ void adding(Tree& oak)
 	{
 		system("cls");
 		ConsoleCursorVisible(true, 100);
-		SetConsoleTextAttribute(hStdOut1_1, DEF_COL);
+		SetConsoleTextAttribute(hStdOut1, DEF_COL);
 		cout << "Введите значение: ";
 		int choice = 0;
 		while (!(cin >> value) || (cin.peek() != '\n'))
@@ -98,7 +98,7 @@ void adding(Tree& oak)
 		if (double(int(value)) != value) choice = incorect_insert(2);
 		if (choice == 1) continue;
 		else if (choice == 2) return;
-		else if(!(oak.contains(value))) oak.insert(value);
+		else oak.insert(value);
 		return;
 	}
 }
@@ -111,7 +111,7 @@ void removing(Tree& oak)
 	{
 		system("cls");
 		ConsoleCursorVisible(true, 100);
-		SetConsoleTextAttribute(hStdOut1_1, DEF_COL);
+		SetConsoleTextAttribute(hStdOut1, DEF_COL);
 		cout << "Введите значение: ";
 		int choice = 0;
 		while (!(cin >> value) || (cin.peek() != '\n'))
@@ -138,7 +138,7 @@ void existing(Tree& oak)
 	{
 		system("cls");
 		ConsoleCursorVisible(true, 100);
-		SetConsoleTextAttribute(hStdOut1_1, DEF_COL);
+		SetConsoleTextAttribute(hStdOut1, DEF_COL);
 		cout << "Введите значение: ";
 		int choice = 0;
 		while (!(cin >> value) || (cin.peek() != '\n'))
@@ -154,23 +154,23 @@ void existing(Tree& oak)
 		else if (choice == 2) return;
 		else
 		{
-			ConsoleCursorVisible(true, 100);
+			ConsoleCursorVisible(false, 100);
 			while (1)
 			{
 				
 				system("cls");
 				if (oak.contains(value))
 				{
-					SetConsoleTextAttribute(hStdOut1_1, GREEN);
+					SetConsoleTextAttribute(hStdOut1, GREEN);
 					cout << "Такое число есть";
-					SetConsoleTextAttribute(hStdOut1_1, ACT_COL);
+					SetConsoleTextAttribute(hStdOut1, ACT_COL);
 					cout << endl << endl << "ну есть и есть";
 				}
 				else
 				{
-					SetConsoleTextAttribute(hStdOut1_1, RED);
+					SetConsoleTextAttribute(hStdOut1, RED);
 					cout << "Такого числа нет";
-					SetConsoleTextAttribute(hStdOut1_1, ACT_COL);
+					SetConsoleTextAttribute(hStdOut1, ACT_COL);
 					cout << endl << endl << "ну нет так нет";
 				}
 				char ch2;
@@ -194,7 +194,7 @@ int Tree_menu()
 	Tree oak;
 	while (true)
 	{
-		SetConsoleTextAttribute(hStdOut1_1, DEF_COL);
+		SetConsoleTextAttribute(hStdOut1, DEF_COL);
 		system("cls");
 		
 		string actions[] = { "Добавить элемент", "Удалить элемент", "Проверить наличие", "Создать новое дерево", "Главное меню (ESC)"};
@@ -206,24 +206,24 @@ int Tree_menu()
 			system("cls");
 			if (oak.get_root() == NULL)
 			{
-				SetConsoleTextAttribute(hStdOut1_1, RED);
+				SetConsoleTextAttribute(hStdOut1, RED);
 				cout << "Дерево пустое" << endl << endl;
 			}
 			else
 			{
-				SetConsoleTextAttribute(hStdOut1_1, GREEN);
+				SetConsoleTextAttribute(hStdOut1, GREEN);
 				cout << "Дерево: ";
 				oak.print();
 				cout << endl << endl;
 			}
 			for (int i = 0; i < size(actions); i++)
 			{
-				if (i == active_menu) SetConsoleTextAttribute(hStdOut1_1, ACT_COL);
-				else SetConsoleTextAttribute(hStdOut1_1, DEF_COL);
+				if (i == active_menu) SetConsoleTextAttribute(hStdOut1, ACT_COL);
+				else SetConsoleTextAttribute(hStdOut1, DEF_COL);
 				if (oak.get_root() == NULL && (i == 1 || i == 2))
 				{
-					if (i == active_menu) SetConsoleTextAttribute(hStdOut1_1, PAS_ACT);
-					else SetConsoleTextAttribute(hStdOut1_1, PAS_COL);
+					if (i == active_menu) SetConsoleTextAttribute(hStdOut1, PAS_ACT);
+					else SetConsoleTextAttribute(hStdOut1, PAS_COL);
 				}
 				cout << actions[i] << endl;
 
