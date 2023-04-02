@@ -38,7 +38,7 @@ void main_menu()
 	char ch;
 	while (true)
 	{
-
+		system("cls");
 		for (int i = 0; i < size(main_menu); i++)
 		{
 			if (i == active_menu) SetConsoleTextAttribute(hStdOut, ACT_COL);
@@ -80,8 +80,10 @@ void main_menu()
 						}
 					case 1:
 						Speed_test_menu();
+						break;
 					case 2:
 						Task_menu();
+						break;
 					case 3:
 						SetConsoleTextAttribute(hStdOut, DEF_COL);
 						exit(0);
