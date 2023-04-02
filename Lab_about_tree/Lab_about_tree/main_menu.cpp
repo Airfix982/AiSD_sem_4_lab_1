@@ -78,6 +78,7 @@ void main_menu()
 						{
 							if (Tree_menu() == -1) break;
 						}
+						break;
 					case 1:
 						Speed_test_menu();
 						break;

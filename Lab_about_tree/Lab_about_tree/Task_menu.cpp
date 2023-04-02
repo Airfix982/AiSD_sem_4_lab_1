@@ -163,7 +163,6 @@ void Task_menu()
 				{
 					break;
 				}
-				//================================================
 				it = find(vec.begin(), vec.end(), el);
 				if (it == vec.end())
 				{
