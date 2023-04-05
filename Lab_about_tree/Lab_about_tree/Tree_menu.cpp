@@ -25,7 +25,7 @@ int incorect_insert(const int mistake)
 	ConsoleCursorVisible(false, 100);
 	char ch1;
 	int active_adding = 0;
-	string adding[] = { "Попытаться сызнова", "Отмена (ESC)" };
+	string adding[] = { "Попытаться снова", "Отмена (ESC)" };
 
 	while (1)
 	{
@@ -212,7 +212,7 @@ int Tree_menu()
 			else
 			{
 				SetConsoleTextAttribute(hStdOut1, GREEN);
-				cout << "Дерево: ";
+				cout << "Дерево: " << endl << endl;
 				oak.print();
 				cout << endl << endl;
 			}

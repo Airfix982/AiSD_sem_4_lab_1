@@ -1,6 +1,10 @@
 #pragma once
 #include <stdio.h>
+#include <queue>
+#include <algorithm>
+#include <cmath>
 #include <stdlib.h>
+#include <iomanip>
 #include <iostream>
 using namespace std;
 
@@ -49,17 +53,48 @@ class Tree
 		
 		};
 
-		void print() const;//+
+		void print();//+
 
-		void print_tree( const Node* node ) const
+		int height(const Node* node) const
+		{
+			if (node == NULL) return 0;
+			return max(height(node->left), height(node->right)) + 1;
+		}
+
+		void print_tree( Node* node ) 
 		{
 
-			if (node != NULL)
+			int h = height(node);
+			int max_nodes = pow(2, h) - 1;
+			queue<Node*> q;
+			q.push(node);
+			int level = 0;
+			while (!q.empty() && level < h)
 			{
-
-				cout << node->data << " ";
-				print_tree(node->left);
-				print_tree(node->right);
+				int level_nodes = q.size();
+				int nodes_to_print = min(level_nodes, max_nodes);
+				int indent = pow(2, h - level - 1) - 1;
+				cout << setw(indent) << "";
+				for (int i = 0; i < nodes_to_print; i++)
+				{
+					Node* node = q.front();
+					q.pop();
+					if (node != NULL)
+					{
+						cout << node->data;
+						q.push(node->left);
+						q.push(node->right);
+					}
+					else
+					{
+						cout << "-";
+						q.push(NULL);
+						q.push(NULL);
+					}
+					cout << setw(2 * indent + 1) << "";
+				}
+				cout << endl;
+				level++;
 
 			}
 

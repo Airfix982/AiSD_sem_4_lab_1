@@ -14,7 +14,7 @@ Tree::Tree( const Tree& copied_tree )
 
 }
 
-void Tree::print() const
+void Tree::print()
 {
 
 	print_tree( this->root );

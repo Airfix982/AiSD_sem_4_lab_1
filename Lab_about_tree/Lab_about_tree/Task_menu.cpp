@@ -22,7 +22,7 @@ HANDLE hStdOut3 = GetStdHandle(STD_OUTPUT_HANDLE);
 void ConsoleCursorVisible(bool show, short size);
 int incorect_insert(const int mistake);
 
-void Add_element(int *el)
+void Enter_value(int *el)
 {
 	double value;
 	while (1)
@@ -49,6 +49,60 @@ void Add_element(int *el)
 	}
 
 
+}
+
+void Add_element(Tree & oak, vector<int>& vec)
+{
+	int el;
+	Enter_value(&el);
+	vec.push_back(el);
+	bool repeat;
+	if (vec.begin() != vec.end())
+	{
+		repeat = false;
+		for (auto i = vec.begin(); i != (vec.end() - 1); i++)
+		{
+			if (*i == el) repeat = true;
+		}
+
+	}
+	if (repeat == true) oak.erase(el);
+	else oak.insert(el);
+}
+
+void Erase_element(Tree& oak, vector<int>& vec)
+{
+	if (vec.begin() == vec.end()) return;
+	int el;
+	Enter_value(&el);
+	auto it = find(vec.begin(), vec.end(), el);
+	if (it != vec.end())
+	{
+		vec.erase(it);
+	}
+	else
+	{
+		return;
+	}
+	it = find(vec.begin(), vec.end(), el);
+	if (it == vec.end())
+	{
+		oak.erase(el);
+		return;
+	}
+	else
+	{
+		auto it1 = find(it + 1, vec.end(), el);
+		if (it1 == vec.end())
+		{
+			oak.insert(el);
+			return;
+		}
+		else
+		{
+			return;
+		}
+	}
 }
 
 
@@ -132,56 +186,13 @@ void Task_menu()
 			{
 			case 0:
 			{
-				int el;
-				Add_element(&el);
-				vec.push_back(el);
-				bool repeat;
-				if (vec.begin() != vec.end())
-				{
-					repeat = false;
-					for (auto i = vec.begin(); i != (vec.end() - 1); i++)
-					{
-						if (*i == el) repeat = true;
-					}
-
-				}
-				if (repeat == true) oak.erase(el);
-				else oak.insert(el);
+				Add_element(oak, vec);
 				break;
 			}
 			case 1:
 			{
-				if (vec.begin() == vec.end()) break;
-				int el;
-				Add_element(&el);
-				auto it = find(vec.begin(), vec.end(), el);
-				if (it != vec.end()) 
-				{
-					vec.erase(it);
-				}
-				else
-				{
-					break;
-				}
-				it = find(vec.begin(), vec.end(), el);
-				if (it == vec.end())
-				{
-					oak.erase(el);
-					break;
-				}
-				else
-				{
-					auto it1 = find(it + 1, vec.end(), el);
-					if (it1 == vec.end())
-					{
-						oak.insert(el);
-						break;
-					}
-					else
-					{
-						break;
-					}
-				}
+				Erase_element(oak, vec);
+				break;
 			}
 			case 2:
 				return;
