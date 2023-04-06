@@ -5,6 +5,7 @@
 #include<conio.h>
 #include<string>
 #include<vector>
+#include<fstream>
 #include"Tree.hpp"
 #define ESC 27
 #define UP 72
@@ -81,6 +82,131 @@ int How_many()
 			break;
 		}
 	}
+}
+
+void Speed_filling_to_txt()
+{
+	ofstream outfile("filling_speed.csv");
+	clock_t start, end;
+	for (int i = 1000; i < 100001; i+=1000)
+	{
+		vector<int> vec;
+		start = clock();
+		for (int j = 0; j < i; j++)
+		{
+			vec.push_back((int)(Rand_val()));
+
+		}
+		end = clock();
+		double vec_time = (double)(end - start) / CLOCKS_PER_SEC;
+
+		double tree_time = 0;
+		for (int j = 0; j < 100; j++)
+		{
+			Tree oak;
+			start = clock();
+			for (int k = 0; k < i; k++)
+			{
+				oak.insert((int)(Rand_val()));
+			}
+			end = clock();
+			tree_time += (double)(end - start) / CLOCKS_PER_SEC;
+		}
+		tree_time /= 100;
+
+		outfile << i << "," << vec_time << "," << tree_time << "\n";
+		cout << i << " write" << endl;
+
+	}
+
+	outfile.close();
+}
+
+void Speed_finding_to_txt()
+{
+	ofstream outfile("finding_speed.csv");
+	clock_t start, end;
+	vector<int> vec;
+	Tree oak;
+	for (int i = 1000; i < 100001; i += 1000)
+	{
+		for (int j = 0; j < 1000; j++)
+		{
+			vec.push_back((int)(Rand_val()));
+
+		}
+		int pres;
+		start = clock();
+		auto place = find(vec.begin(), vec.end(), (int)(Rand_val()));
+		end = clock();
+		double vec_time = (double)(end - start) / CLOCKS_PER_SEC;
+
+		double tree_time = 0;
+		for (int j = 0; j < 1000; j++)
+		{
+				oak.insert((int)(Rand_val()));
+		}
+		
+		for (int j = 0; j < 1000; j++)
+		{
+			start = clock();
+			pres = oak.contains((int)(Rand_val()));
+			end = clock();
+			tree_time += (double)(end - start) / CLOCKS_PER_SEC;
+		}
+		tree_time /= 1000;
+
+		outfile << i << "," << vec_time << "," << tree_time << "\n";
+		cout << i << " write" << endl;
+
+	}
+
+	outfile.close();
+}
+
+void Speed_adding_deleting_to_txt()
+{
+	ofstream outfile("adding_deleting_speed.csv");
+	clock_t start, end;
+	vector<int> vec;
+	Tree oak;
+	for (int i = 1000; i < 100001; i += 1000)
+	{
+		for (int j = 0; j < 1000; j++)
+		{
+			vec.push_back((int)(Rand_val()));
+
+		}
+		int rand_val = (int)Rand_val();
+		start = clock();
+		vec.push_back(rand_val);
+		vec.erase(remove(vec.begin(), vec.end(), rand_val), vec.end());
+		end = clock();
+		double vec_time = (double)(end - start) / CLOCKS_PER_SEC;
+
+		double tree_time = 0;
+		for (int j = 0; j < 1000; j++)
+		{
+			oak.insert((int)(Rand_val()));
+		}
+
+		for (int j = 0; j < 1000; j++)
+		{
+			rand_val = Rand_val();
+			start = clock();
+			oak.insert(rand_val);
+			oak.erase(rand_val);
+			end = clock();
+			tree_time += (double)(end - start) / CLOCKS_PER_SEC;
+		}
+		tree_time /= 1000;
+
+		outfile << i << "," << vec_time << "," << tree_time << "\n";
+		cout << i << " write" << endl;
+
+	}
+
+	outfile.close();
 }
 
 void Speed_filling()
@@ -290,14 +416,16 @@ void Speed_test_menu()
 			switch (active_menu)
 			{
 			case 0:
-				Speed_filling();
+				Speed_filling_to_txt();
+				//Speed_filling();
 				break;
 			case 1:
-					
-				Speed_finding();
+				Speed_finding_to_txt();
+				/*Speed_finding();*/
 				break;
 			case 2:
-				Add_and_delete();
+				Speed_adding_deleting_to_txt();
+				//Add_and_delete();
 				break;
 			case 3:
 
